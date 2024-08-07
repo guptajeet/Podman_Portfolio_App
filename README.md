@@ -1,20 +1,17 @@
 ---
 
-## Simple Web Application Deployment with Podman
+## Web Application Deployment with Podman 🚀
 
-### 🌟Project Overview
+### Project Overview 🌟
+This project demonstrates how to deploy a simple web application using Podman. You will learn how to containerize an application, run it, and manage it with Podman.
 
-This project demonstrates how to deploy a simple web application using Podman. We'll learn how to containerize an application, run it, and manage it using Podman.
-
-### What I'll Learn
-
+### What we'll learn 🤔
 - How to create and containerize a web application using Podman
 - Basic Podman commands for building and running containers
 - The benefits of using containers for application deployment
 
-### Project Structure
-
-```
+### Project Structure 🗂️
+```plaintext
 Podman_Portfolio_App/
 ├── app.py
 ├── Dockerfile
@@ -26,123 +23,84 @@ Podman_Portfolio_App/
     └── index.html
 ```
 
-### Running the Application Without Docker
+### Table of Contents
+- [Running the Application Without Docker ](#Running the Application Without Docker 🚫)
+- [Why Use Podman/Docker? ](#why-use-podmandocker)
+- [Installations Before Starting 📦](#installations-before-starting)
+- [Basic Podman Concepts ](#basic-podman-concepts)
+- [Podman Commands ](#podman-commands)
+- [Cloning the Repository ](#cloning-the-repository)
+- [Dockerfile ](#dockerfile)
+- [Building and Running the Image ](#building-and-running-the-image)
+- [Checking the Logs ](#checking-the-logs)
+- [License ](#license)
+- [Acknowledgements ](#acknowledgements)
+- [Contact ](#contact)
 
-Before diving into containerization, we might want to check if the application works without Docker:
-   ```sh
-   sudo dnf install python3 python3-pip -y # Install Python and Required Packages
-   pip3 install -r requirements.txt        # Install requirements in this project its FLASK
-   python3 app.py                          # Run the Flask Application
-   
-   ```
-   Access the application via `http://localhost:5000/` OR `http://server_ip:5000/`
+### Why Use Podman/Docker? 🤔
 
-### Why Use Podman/Docker?
+Running applications in containers provides several benefits:
+- **Isolation:** Containers run in isolated environments, reducing conflicts.
+- **Consistency:** Ensures the application behaves the same across different environments.
+- **Scalability:** Simplifies horizontal scaling of applications.
 
-Running application in a container provides several benefits:
+### Real-Time Scenario 🕰️
+Imagine deploying a web application across development, staging, and production environments. Containers ensure consistent behavior and reduce "works on my machine" issues.
 
-- **Isolation:** Containers run in their own isolated environments, reducing conflicts between different applications or services on the same host.
-- **Consistency:** Containers ensure that your application runs the same way in different environments, from development to production.
-- **Scalability:** Containers make it easier to scale applications horizontally by running multiple instances.
+### Basic Podman Concepts 📚
 
-**Real-Time Scenario:**
+- **Container:** An isolated environment where your application runs.
+- **Image:** A snapshot of a container with the application code and runtime environment.
+- **Pod:** A group of one or more containers sharing the same network namespace.
 
-Imagine you are deploying a web application across different environments: development, staging, and production. Using containers ensures that the application behaves consistently across all environments, reducing the risk of "works on my machine" issues.
+Learn more about [Podman concepts here](https://podman.io).
 
-### Installations Before Starting
+### Podman Commands 📝
 
-Ensure you have the necessary tools installed:
+Here are some fundamental Podman commands:
 
-```sh
+| Command                                    | Description                                       |
+|--------------------------------------------|---------------------------------------------------|
+| `podman pull <image>`                      | Download an image from a registry.               |
+| `podman build -t <tag> .`                  | Build a new image from a Dockerfile.             |
+| `podman run -d -p <host_port>:<container_port> <image>` | Run a container in detached mode.         |
+| `podman ps`                                | List all running containers.                     |
+| `podman stop <container_id>`               | Stop a running container.                        |
+| `podman rm <container_id>`                 | Remove a stopped container.                      |
+| `podman logs <container_id>`               | View the logs of a container.                    |
+| `podman rmi <image_id>`                    | Remove an image.                                 |
+| `podman exec -it <container_id> /bin/bash` | Execute a command inside a running container.   |
+
+Learn more about [Podman commands here](https://podman.io/getting-started).
+
+### Project Start 🚀
+
+To start with the project, follow the steps below to set up and deploy the web application using Podman.
+**Note** - You can pull this source code or repo from  or you can build or use any othe webapp of your choice.
+
+### Installations Before Starting 📦
+
+Ensure you have the following tools installed:
+
+```bash
 sudo dnf install git podman python3 python3-pip -y
 ```
 
-### Basic Podman Concepts
-
-Before starting the project, it's essential to understand some basic Podman concepts:
-
-- **Container:** An isolated environment where your application runs.
-- **Image:** A snapshot of a container that includes the application code and runtime environment.
-- **Pod:** A group of one or more containers that share the same network namespace.
-
-[Learn more about Podman concepts here](https://podman.io/docs)
-
-### Podman Commands
-
-Here are some fundamental Podman commands and their uses:
-
-- **`podman pull <image>`**  
-  Download an image from a registry.
-  ```sh
-  podman pull python:3.9-slim
-  ```
-
-- **`podman build -t <tag> .`**  
-  Build a new image from a Dockerfile in the current directory.
-  ```sh
-  sudo podman build -t podman_portfolio_app:1.0 .
-  ```
-
-- **`podman run -d -p <host_port>:<container_port> <image>`**  
-  Run a container in detached mode and map container ports to host ports.
-  ```sh
-  sudo podman run -d -p 5000:5000 localhost/podman_portfolio_app:1.0
-  ```
-
-- **`podman ps`**  
-  List all running containers.
-  ```sh
-  podman ps
-  ```
-
-- **`podman stop <container_id>`**  
-  Stop a running container.
-  ```sh
-  sudo podman stop <container_id>
-  ```
-
-- **`podman rm <container_id>`**  
-  Remove a stopped container.
-  ```sh
-  sudo podman rm <container_id>
-  ```
-
-- **`podman logs <container_id>`**  
-  View the logs of a container.
-  ```sh
-  sudo podman logs <container_id>
-  ```
-
-- **`podman rmi <image_id>`**  
-  Remove an image.
-  ```sh
-  sudo podman rmi <image_id>
-  ```
-
-- **`podman exec -it <container_id> /bin/bash`**  
-  Execute a command inside a running container (e.g., open a shell).
-  ```sh
-  sudo podman exec -it <container_id> /bin/bash
-  ```
-
-[Learn more about Podman commands here](https://docs.podman.io/en/latest/Commands.html)
-
-Lets get started with project now, first step is to pull the source code from github or you can use any other webapp of your choice
-### Cloning the Repository
+### Cloning the Repository 📁
 
 Clone the repository to get the project files:
 
-```sh
+```bash
 git clone https://github.com/guptajeet/Podman_Portfolio_App.git
 ```
 
-### Dockerfile
+### Dockerfile 📄
 
-Here is the `Dockerfile` used to containerize the application:
-Note - Make sure to remove comments in Dockerfile, here i used comments to explain the file. 
+Here is the Dockerfile used to containerize the application:
+**Note** - Make sure to remove comments in Dockerfile, here i used comments to explain the file. 
 
 ```Dockerfile
-# Use the official Python image from the Docker Hub
+# Use the official Python image from Docker Hub
 FROM python:3.9-slim
 
 # Set the working directory in the container
@@ -164,37 +122,33 @@ EXPOSE 5000
 CMD ["python", "app.py"]
 ```
 
-### Building and Running the Image
+### Building and Running the Image 🚀
 
-1. **Build the Docker Image:**
+Build the Docker image:
 
-   Navigate to the project directory and build the image:
+```bash
+cd Podman_Portfolio_App
+sudo podman build -t podman_portfolio_app:1.0 .
+```
 
-   ```sh
-   cd Podman_Portfolio_App
-   sudo podman build -t podman_portfolio_app:1.0 .
-   ```
+Run the container:
 
-2. **Run the Container:**
+```bash
+sudo podman run -d -p 5000:5000 localhost/podman_portfolio_app:1.0
+```
 
-   Run the container with port mapping:
+Access the application via [http://vm_ip:5000](http://vm_ip:5000) or [http://localhost:5000](http://localhost:5000).
+<img width="955" alt="image" src="https://github.com/user-attachments/assets/0ca0cbc3-2b7a-466b-88ce-02de357faa48">
 
-   ```sh
-   sudo podman run -d -p 5000:5000 localhost/podman_portfolio_app:1.0
-   ```
+### Checking the Logs 📝
 
-   Access the application via `http://vm_ip:5000` or `http://localhost:5000`.
+View the container logs:
 
-### Checking the Logs
-
-View the container logs to ensure the application is running correctly:
-
-```sh
+```bash
 sudo podman logs <container_id>
 ```
 
-**Example Log Output:**
-
+### Example Log Output:
 ```
  * Serving Flask app 'app'
  * Debug mode: on
@@ -203,43 +157,19 @@ WARNING: This is a development server. Do not use it in a production deployment.
  * Running on http://127.0.0.1:5000
  * Running on http://10.88.0.4:5000
 ```
-<img width="955" alt="image" src="https://github.com/user-attachments/assets/41be4070-c760-4ea3-943d-1c54651ad899">
 
+### License 📜
 
-## License
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-This project is licensed under the [MIT License](LICENSE).
+### Acknowledgements 🙏
 
-## Acknowledgements
+- [Flask](https://flask.palletsprojects.com/): A micro web framework for Python.
+- [Podman](https://podman.io): A daemonless container engine for developing, managing, and running OCI containers.
+- [GitHub](https://github.com): Hosting and version control platform for the project's repository.
 
-- Flask: A micro web framework for Python.
-- Podman: A daemonless container engine for developing, managing, and running OCI containers.
+### Contact 📲
 
-## Contact
-
-Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/ajeet-g-456333194/).
-
-## Additional
-
-- `.gitignore` file: Excludes unnecessary files from being committed to the repository.
-
-### `app.py`
-
-Here is the `app.py` file used in this project:
-
-```python
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
-```
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/guptajeet).
 
 ---
-
-

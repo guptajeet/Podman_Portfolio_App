@@ -24,18 +24,20 @@ Podman_Portfolio_App/
 ```
 
 ### Table of Contents
-- [Running the Application Without Docker ](#Running the Application Without Docker 🚫)
-- [Why Use Podman/Docker? ](#why-use-podmandocker)
-- [Installations Before Starting 📦](#installations-before-starting)
-- [Basic Podman Concepts ](#basic-podman-concepts)
-- [Podman Commands ](#podman-commands)
-- [Cloning the Repository ](#cloning-the-repository)
-- [Dockerfile ](#dockerfile)
-- [Building and Running the Image ](#building-and-running-the-image)
-- [Checking the Logs ](#checking-the-logs)
-- [License ](#license)
-- [Acknowledgements ](#acknowledgements)
-- [Contact ](#contact)
+```plaintext
+1. Why Use Podman/Docker? 🤔
+2. Basic Podman Concepts 📚
+3. Podman Commands 📝
+4. Project Start 🚀
+5. Installations Before Starting 📦
+6. Cloning the Repository 📁
+7. Dockerfile 📄
+8. Building and Running the Image 🚀
+9. Checking the Logs 📝
+10. License 📜
+11. Acknowledgements 🙏
+12. Contact 📲
+```
 
 ### Why Use Podman/Docker? 🤔
 
@@ -137,7 +139,8 @@ Run the container:
 sudo podman run -d -p 5000:5000 localhost/podman_portfolio_app:1.0
 ```
 
-Access the application via [http://vm_ip:5000](http://vm_ip:5000) or [http://localhost:5000](http://localhost:5000).
+Access the application via [http://server_ip:5000](http://vm_ip:5000) or [http://localhost:5000](http://localhost:5000).
+
 <img width="955" alt="image" src="https://github.com/user-attachments/assets/0ca0cbc3-2b7a-466b-88ce-02de357faa48">
 
 ### Checking the Logs 📝

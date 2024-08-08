@@ -3,7 +3,7 @@
 ## Web Application Deployment with Podman 🚀
 
 ### Project Overview 🌟
-This project demonstrates how to deploy a simple web application using Podman. You will learn how to containerize an application, run it, and manage it with Podman.
+This project demonstrates how to deploy a simple web application using Podman. We'll will learn how to containerize an application, run it, and manage it with Podman.
 
 ### What we'll learn 🤔
 - How to create and containerize a web application using Podman
